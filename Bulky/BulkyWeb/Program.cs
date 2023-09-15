@@ -12,7 +12,7 @@ namespace BulkyWeb
             // Add services to the container.
             builder.Services.AddControllersWithViews(); //we are using MVC hence the service
 
-            //Adding EntityFrameworkcore service(DbContext)
+            //Adding EntityFrameworkcore service(DbContext); Dependency injection innit
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
@@ -41,3 +41,4 @@ namespace BulkyWeb
         }
     }
 }
+
