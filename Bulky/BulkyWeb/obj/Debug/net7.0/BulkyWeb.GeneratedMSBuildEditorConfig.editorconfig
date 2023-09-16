@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\HP\source\repos\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\Bulky\BulkyWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/HP/source/repos/.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-/Bulky/BulkyWeb/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP/source/repos/.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-/Bulky/BulkyWeb/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
