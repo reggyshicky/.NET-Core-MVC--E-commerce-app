@@ -1,11 +1,11 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.X86;
 using System;
 using Microsoft.Extensions.Hosting;
 using static System.Collections.Specialized.BitVector32;
 using System.Reflection.Metadata;
+using Bulky.DataAccess.Data;
+using Bulky.Models;
 
 namespace BulkyWeb.Controllers
 {
