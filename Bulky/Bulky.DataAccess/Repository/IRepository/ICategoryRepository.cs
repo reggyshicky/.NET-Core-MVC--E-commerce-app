@@ -11,5 +11,6 @@ namespace Bulky.DataAccess.Repository.IRepository
     {
         void Update(Category obj);
         void Save();
+        //Implementation is in the Category repository
     }
 }
