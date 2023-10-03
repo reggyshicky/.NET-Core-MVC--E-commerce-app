@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.IdentityModel.Tokens;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Bulky.DataAccess.Repository 
+namespace Bulky.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
@@ -31,7 +31,7 @@ namespace Bulky.DataAccess.Repository
             //your repository to interact with the specific database table that corresponds to the entity type T.So, any operations
             //you perform on dbSet will be carried out on the database table related to the entity T.
             //_db.Categories == dbset
-            
+
         }
         public void Add(T entity)
         {
