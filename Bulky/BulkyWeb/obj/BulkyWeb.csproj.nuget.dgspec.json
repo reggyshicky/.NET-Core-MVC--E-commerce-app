@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj": {}
+    "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj": {
+    "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj",
         "projectName": "Bulky.DataAccess",
-        "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\Bulky.Models.csproj": {
-                "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\Bulky.Models.csproj"
+              "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj": {
+                "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj"
               },
-              "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj": {
-                "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj"
+              "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj": {
+                "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj"
               }
             }
           }
@@ -86,14 +86,14 @@
         }
       }
     },
-    "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\Bulky.Models.csproj": {
+    "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\Bulky.Models.csproj",
-        "projectName": "Bulky.Models",
-        "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\Bulky.Models.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj",
+        "projectName": "BulkyBook.Models",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\obj\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -141,14 +141,14 @@
         }
       }
     },
-    "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj": {
+    "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
         "projectName": "Bulky.Utility",
-        "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\obj\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.Utility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -196,14 +196,14 @@
         }
       }
     },
-    "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj": {
+    "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
         "projectName": "BulkyWeb",
-        "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
+        "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\obj\\",
+        "outputPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\BulkyWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -220,8 +220,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\HP\\Source\\Repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj"
+              "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\HP\\source\\repos\\.NET-Core-MVC---The-Complete-Guide-2023-E-commerce-app-\\Bulky\\Bulky.DataAccess\\Bulky.DataAccess.csproj"
               }
             }
           }
