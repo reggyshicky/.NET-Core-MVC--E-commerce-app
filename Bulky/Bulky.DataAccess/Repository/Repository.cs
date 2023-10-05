@@ -42,7 +42,7 @@ namespace Bulky.DataAccess.Repository
             IQueryable<T> query = dbSet; //you are assigning the dbSet (which is of type DbSet<T>)
                                          //to the query variable, effectively making query a queryable
                                          //collection of your entity type.
-            query.Where(filter);
+            query = query.Where(filter);
             return query.FirstOrDefault();
             //filter is a parameter representing a filtering condition expressed as a
             //lambda expression(e.g., c => c.Id == 123). This lambda expression defines
