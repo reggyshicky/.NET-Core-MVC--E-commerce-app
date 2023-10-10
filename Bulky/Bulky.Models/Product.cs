@@ -43,6 +43,7 @@ namespace Bulky.Models
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         //Navigation property to Category Table
+        public string ImageUrl { get; set; }
 
     }
 }
