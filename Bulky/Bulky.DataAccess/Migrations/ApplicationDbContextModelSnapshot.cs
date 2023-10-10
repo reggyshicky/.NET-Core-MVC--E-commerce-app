@@ -44,19 +44,19 @@ namespace Bulky.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 20,
                             DisplayOrder = 1,
                             Name = "Action"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 21,
                             DisplayOrder = 2,
                             Name = "SciFi"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 22,
                             DisplayOrder = 3,
                             Name = "History"
                         });
