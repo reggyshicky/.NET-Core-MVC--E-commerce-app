@@ -1,4 +1,4 @@
-﻿ using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.X86;
 using System;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +8,8 @@ using Bulky.DataAccess.Data;
 using Bulky.Models;
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.DataAccess.Repository;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -23,6 +25,12 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.
+                GetAll().Select(u=> new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });  
             return View(objProductList);
         }
         //This is an HTTP GET request handler.It returns a view for creating a new product.In other words, when a user navigates to a URL or 
