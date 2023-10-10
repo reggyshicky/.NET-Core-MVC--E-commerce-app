@@ -10,6 +10,8 @@ using Bulky.DataAccess.Repository.IRepository;
 using Bulky.DataAccess.Repository;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static System.Net.Mime.MediaTypeNames;
+using Newtonsoft.Json.Linq;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -38,8 +40,24 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString()
                 });
-            ViewBag.CategoryList = CategoryList;
+            // ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
             return View();
+
+
+
+
+
+
+
+
+
+
+            //u.Name is used as the Text, which is what is displayed in the dropdown list.This is the user - friendly name or label 
+            //for the category.
+            //u.Id.ToString() is used as the Value, which is not displayed to the user but is used to uniquely identify the category 
+            //when the user selects an option. This is typically a numeric identifier or a unique key for the category.
+            //Value is the data that gets sent to the server when the user selects an item.
         }
 
 
