@@ -25,18 +25,20 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.
-                GetAll().Select(u=> new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });  
+            
             return View(objProductList);
         }
         //This is an HTTP GET request handler.It returns a view for creating a new product.In other words, when a user navigates to a URL or 
         //clicks a link that maps to this action, they will see a form or page for creating a new product.
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.
+                GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+            ViewBag.CategoryList = CategoryList;
             return View();
         }
 
