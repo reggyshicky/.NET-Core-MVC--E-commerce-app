@@ -33,7 +33,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
         //This is an HTTP GET request handler.It returns a view for creating a new product.In other words, when a user navigates to a URL or 
         //clicks a link that maps to this action, they will see a form or page for creating a new product.
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {           
             ProductVM productVM = new()
             {
@@ -46,7 +46,19 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 Product = new Product()
 
             };
-            return View(productVM);            
+            if (id == null || id == 0)
+                //create
+            {
+                return View(productVM);
+            }
+            else
+            {
+                //update
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVM);
+
+            }
+                    
         }
 
 
@@ -54,7 +66,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         //submits the form, the data is sent as an HTTP POST request to this action.
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             
             if (ModelState.IsValid)
@@ -77,35 +89,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
            
         }
 
-        //Get method
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-            //Product? productFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-            //Product? productFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated succesfully";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+        
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
@@ -152,3 +136,34 @@ namespace BulkyWeb.Areas.Admin.Controllers
 //u.Id.ToString() is used as the Value, which is not displayed to the user but is used to uniquely identify the category 
 //when the user selects an option. This is typically a numeric identifier or a unique key for the category.
 //Value is the data that gets sent to the server when the user selects an item.
+//Get method
+/*
+public IActionResult Edit(int? id)
+{
+    if (id == null || id == 0)
+    {
+        return NotFound();
+    }
+    Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+    //Product? productFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+    //Product? productFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+    if (productFromDb == null)
+    {
+        return NotFound();
+    }
+    return View(productFromDb);
+}
+
+[HttpPost]
+public IActionResult Edit(Product obj)
+{
+    if (ModelState.IsValid)
+    {
+        _unitOfWork.Product.Update(obj);
+        _unitOfWork.Save();
+        TempData["success"] = "Product updated succesfully";
+        return RedirectToAction("Index");
+    }
+    return View();
+}
+*/
