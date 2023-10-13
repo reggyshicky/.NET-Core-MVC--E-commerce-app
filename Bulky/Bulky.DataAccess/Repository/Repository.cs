@@ -31,18 +31,26 @@ namespace Bulky.DataAccess.Repository
             //your repository to interact with the specific database table that corresponds to the entity type T.So, any operations
             //you perform on dbSet will be carried out on the database table related to the entity T.
             //_db.Categories == dbset
-
+            //_db.Products.Include(u => u.Category).Include(u=> u.CategoryId);
         }
         public void Add(T entity)
         {
             dbSet.Add(entity);
         }
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet; //you are assigning the dbSet (which is of type DbSet<T>)
                                          //to the query variable, effectively making query a queryable
-                                         //collection of your entity type.
+                                        //collection of your entity type.
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
             //filter is a parameter representing a filtering condition expressed as a
             //lambda expression(e.g., c => c.Id == 123). This lambda expression defines
@@ -52,9 +60,17 @@ namespace Bulky.DataAccess.Repository
             //query result or null if there are no matching elements. If your query doesn't find any matching records, 
             //it returns null.
         }
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if(!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var includeProp in includeProperties
+                    .Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.ToList();
         }
         public void Remove(T entity)
