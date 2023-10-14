@@ -156,7 +156,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted succesfully";
             return RedirectToAction("Index");
         }
-        //APIs
+
         #region APICALLS
         [HttpGet]
         public IActionResult GetAll()
