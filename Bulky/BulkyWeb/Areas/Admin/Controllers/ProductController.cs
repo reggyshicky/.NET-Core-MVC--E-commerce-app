@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using Bulky.Models.ViewModels;
 using System.Diagnostics;
 using Microsoft.AspNetCore.SignalR;
+using Bulky.DataAccess.Migrations;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -126,36 +127,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
         
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(productFromDb);
-        }
-
-
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int? id)
-        {
-            Product? obj = _unitOfWork.Product.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Product.Remove(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Product deleted succesfully";
-            return RedirectToAction("Index");
-        }
+      
 
         #region APICALLS
         [HttpGet]
@@ -164,9 +136,40 @@ namespace BulkyWeb.Areas.Admin.Controllers
             List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProductList });
         }
+
+        //[HttpDelete]
+
+        public IActionResult Delete(int? id)
+        {
+            var productToBeDeleted = _unitOfWork.Product.Get(u => u.Id == id);
+            if (productToBeDeleted == null)
+            {
+                return Json(new { sucess = false, message = "Errorwhile deleting" });
+            }
+            var oldImagePath =
+                           Path.Combine(_webHostEnvironment.WebRootPath,
+                           productToBeDeleted.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+
+            }
+            _unitOfWork.Product.Remove(productToBeDeleted);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Delete Successful" });
+
+        }
         #endregion
     }
 }
+
+//If the code is working when you remove the [HttpDelete] attribute from your action method, it means that the action can respond to 
+//HTTP DELETE requests without explicitly specifying the attribute. In ASP.NET Core, action methods are mapped to HTTP methods based 
+//on naming conventions, even if you don't use the [HttpDelete] attribute. This is known as "convention-based routing."
+
+
 //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.
 //    GetAll().Select(u => new SelectListItem
 //    {
