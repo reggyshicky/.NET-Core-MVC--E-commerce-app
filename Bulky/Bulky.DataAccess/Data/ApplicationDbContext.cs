@@ -1,9 +1,10 @@
 ﻿using Bulky.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -15,6 +16,7 @@ namespace Bulky.DataAccess.Data
         //seeding data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); //added for IdentitiyDbContext
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 20, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 21, Name = "SciFi", DisplayOrder = 2 },

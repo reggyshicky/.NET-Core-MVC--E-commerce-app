@@ -2,6 +2,7 @@ using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
        
         
@@ -13,6 +14,8 @@ builder.Services.AddControllersWithViews(); //we are using MVC hence the service
 //Adding EntityFrameworkcore service(DbContext); Dependency injection innit
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
