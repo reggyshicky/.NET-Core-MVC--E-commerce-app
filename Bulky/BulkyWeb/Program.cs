@@ -15,7 +15,7 @@ builder.Services.AddControllersWithViews(); //we are using MVC hence the service
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
@@ -32,6 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles(); //wwwroot static file are accessed
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
