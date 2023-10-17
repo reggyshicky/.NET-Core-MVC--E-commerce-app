@@ -20,6 +20,7 @@ using Bulky.DataAccess.Migrations;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
