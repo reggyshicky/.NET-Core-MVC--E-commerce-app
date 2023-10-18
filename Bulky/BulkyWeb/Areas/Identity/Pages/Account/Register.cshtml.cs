@@ -171,6 +171,11 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
                 //CreateAsynch is a helper method to CreateUser()
+
+                if(Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId= Input.CompanyId;
+                }
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
