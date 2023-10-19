@@ -37,11 +37,23 @@ namespace Bulky.DataAccess.Repository
         {
             dbSet.Add(entity);
         }
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = dbSet; //you are assigning the dbSet (which is of type DbSet<T>)
-                                         //to the query variable, effectively making query a queryable
-                                        //collection of your entity type.
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = dbSet; //you are assigning the dbSet (which is of type DbSet<T>)
+                               //to the query variable, effectively making query a queryable
+                               //collection of your entity type.
+            }
+            else
+            {
+                query = dbSet.AsNoTracking(); //you are assigning the dbSet (which is of type DbSet<T>)
+                                             //to the query variable, effectively making query a queryable
+                                             //collection of your entity type.
+     
+            }
+
             query = query.Where(filter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
@@ -52,18 +64,22 @@ namespace Bulky.DataAccess.Repository
                 }
             }
             return query.FirstOrDefault();
-            //filter is a parameter representing a filtering condition expressed as a
-            //lambda expression(e.g., c => c.Id == 123). This lambda expression defines
-            ////how you want to filter the data;
-            //query.FirstOrDefault() is another method call on the query variable.It's used to retrieve the first element from the filteredquery result.
-            //FirstOrDefault() is a method provided by Entity Framework(and LINQ in general) that returns the first element of the 
-            //query result or null if there are no matching elements. If your query doesn't find any matching records, 
-            //it returns null.
         }
-        public IEnumerable<T> GetAll(string? includeProperties = null)
+        //filter is a parameter representing a filtering condition expressed as a
+        //lambda expression(e.g., c => c.Id == 123). This lambda expression defines
+        ////how you want to filter the data;
+        //query.FirstOrDefault() is another method call on the query variable.It's used to retrieve the first element from the filteredquery result.
+        //FirstOrDefault() is a method provided by Entity Framework(and LINQ in general) that returns the first element of the 
+        //query result or null if there are no matching elements. If your query doesn't find any matching records, 
+        //it returns null.
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            if(!string.IsNullOrEmpty(includeProperties))
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach(var includeProp in includeProperties
                     .Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
@@ -73,6 +89,8 @@ namespace Bulky.DataAccess.Repository
             }
             return query.ToList();
         }
+
+ 
         public void Remove(T entity)
         {
             dbSet.Remove(entity);
