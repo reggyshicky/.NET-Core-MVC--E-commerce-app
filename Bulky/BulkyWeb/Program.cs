@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddRazorPages();
 //Adding EntityFrameworkcore service(DbContext); Dependency injection innit
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe")); //inject the stripe api keys from the appsetting.json to the properties defined in the StripeSettings.cs
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -38,7 +42,7 @@ if (!app.Environment.IsDevelopment()) //environmental variable in appsettings.De
 
 app.UseHttpsRedirection();
 app.UseStaticFiles(); //wwwroot static file are accessed
-
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 app.UseRouting();
 app.UseAuthentication();
 
