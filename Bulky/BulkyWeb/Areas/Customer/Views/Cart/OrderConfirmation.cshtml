@@ -1,0 +1,24 @@
+﻿@model int
+
+
+<div class="container row pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Order Placed Successfully!</h1>
+        Your Order Number is : @Model <br/><br/>
+        <img src="~/images/lawn_leaf.jpg" width="50%"/>
+    </div>
+    <div class="col-12 text-center" style="color: maroon">
+        <br/>
+        Your Order has been places succesfully! <br/>
+    </div>
+</div>
+
+
+
+
+
+
+@* @model int: this is a directive in Razor that specifies the data model for the view.In this case it is 
+indicating that the view expects an integer (int) as its model. The model is typically used to pass data from the
+controller to the view so that it can be displayed or manipulated. In the above , the view is set up to work
+with an integer model, which means it can access and display integer values *@

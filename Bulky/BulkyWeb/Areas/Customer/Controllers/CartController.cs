@@ -1,4 +1,5 @@
-﻿using Bulky.DataAccess.Repository.IRepository;
+﻿using Bulky.DataAccess.Repository;
+using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Bulky.Utility;
@@ -80,7 +81,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                 includeProperties: "Product");
             ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
             ShoppingCartVM.OrderHeader.ApplicationUserId = userId;	
-			ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+			ApplicationUser ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
 
 			
 
@@ -91,9 +92,9 @@ namespace BulkyWeb.Areas.Customer.Controllers
 				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
 
-            if (ShoppingCartVM.OrderHeader.ApplicationUser.CompanyId.GetValueOrDefault() == 0)
+            if (ApplicationUser.CompanyId.GetValueOrDefault() == 0)
             {
-                //it is a regular customer ccount and we need to capture payment
+                //it is a regular customer ccount
                 ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
                 ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
 
@@ -107,20 +108,36 @@ namespace BulkyWeb.Areas.Customer.Controllers
             }
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
-            foreach(var cart in ShoppingCartVM.ShoppingCartList )
+            foreach(var cart in ShoppingCartVM.ShoppingCartList)
             {
                 OrderDetail orderDetail = new()
                 {
                     ProductId = cart.ProductId,
-                    OrderHeaderId = ShoppingCartVM.OrderHeader.id,
+                    OrderHeaderId = ShoppingCartVM.OrderHeader.Id,
                     Price = cart.Price,
                     Count = cart.Count,
 
                 };
-                
+				_unitOfWork.OrderDetail.Add(orderDetail);
+				_unitOfWork.Save();
+
+			}
+            if (ApplicationUser.CompanyId.GetValueOrDefault() == 0)
+            {
+                //it is a regular customer account and we need to capture payment
+                //stripe logic
+
+
             }
-			return View(ShoppingCartVM);
+
+            return RedirectToAction(nameof(OrderConfirmation), new { id = ShoppingCartVM.OrderHeader.Id });
 		}
+
+
+        public IActionResult OrderConfirmation(int id) //order id
+        {
+            return View(id);
+        }
 		public IActionResult Plus(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
