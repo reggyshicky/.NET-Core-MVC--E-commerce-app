@@ -169,8 +169,30 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult OrderConfirmation(int id) //order id
         {
+            OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u=>u.Id == id, includeProperties: "Applicationuser");
+            if(orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
+            {
+                //This is an order by a customer not a company
+                var service = new SessionService();
+                Session session = service.Get(orderHeader.SessionId);
+                if (session.PaymentStatus.ToLower() == "paid")
+                {
+					_unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
+                    _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                    _unitOfWork.Save();
+
+				}
+
+
+			}
+            List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
+                .GetAll(u=>u.ApplicationUserId == orderHeader.ApplicationUser.Id).ToList();
+            _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
+            _unitOfWork.Save();
+               
             return View(id);
         }
+
 		public IActionResult Plus(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
