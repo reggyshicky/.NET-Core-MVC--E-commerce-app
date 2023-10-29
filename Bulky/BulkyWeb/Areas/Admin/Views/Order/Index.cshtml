@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     var status = Context.Request.Query["status"];
     var pending = "text-primary";
     var inprocess = "text-primary";
@@ -23,14 +23,17 @@
         default:
             all = "active text-white bg-primary";
             break;
+
     }
+
 }
 
-<div class="card shadow border-0 mt-4">
-    <div class="card-header bg-secondary bg-gradient m-l-0 py-3">
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h4 class="text-white py-2">Order List</h4>
+                <h2 class="text-white py-2">Order List</h2>
             </div>
         </div>
     </div>
@@ -39,13 +42,13 @@
             <span></span>
             <ul class="list-group list-group-horizontal-sm">
                 <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="inprocess">
-                    <li class="list-group-item @inprocess">In Process</li>
+                <li class="list-group-item @inprocess">In Process</li>
                 </a>
-                 <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending">
-                    <li class="list-group-item @pending">Payment Pending</li>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="pending">
+                <li class="list-group-item @pending">Payment Pending</li>
                 </a>
-                 <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed">
-                    <li class="list-group-item @completed">Completed</li>
+                <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="completed">
+                <li class="list-group-item @completed">Completed</li>
                 </a>
                 <a style="text-decoration:none;" asp-controller="Order" asp-action="Index" asp-route-status="approved">
                 <li class="list-group-item @approved">Approved</li>
@@ -68,13 +71,13 @@
                 </tr>
             </thead>
         </table>
+
     </div>
 </div>
 
 @section Scripts{
     <script src="~/js/order.js"></script>
 }
-
 
 
 
