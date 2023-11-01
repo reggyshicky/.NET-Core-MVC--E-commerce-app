@@ -24,6 +24,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim != null) //means a user is logged in
+            {
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+            }
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }
@@ -85,3 +92,15 @@ namespace BulkyWeb.Areas.Customer.Controllers
         }
     }
 }
+
+/*
+var claimsIdentity = (ClaimsIdentity)User.Identity; this line of code is extracting info about the currently logged-in user. In ASP.NET when a user logs in, their identity is stored in the User.Identity property
+User represent the current user's context, and the User.Identity is an object that holds info about the user's identity, such as thier username, roles and claims
+ClaimsIdentity is a class used to manage and manipulate the claims associated with a user's identity. Claims are pieces of info about the user, like their name, email or role
+var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier); this line of code os searching for a specific clain associated with the user's identity. in this case it is looking for a claim with the type ClaimsType.NameIdentifier
+ClaimTypes.NameIdentifier is predefined constant in the System.Security.Claims namespace and it typically represents a uniquie identifier for the user, could be a user ID
+claimsIdentity.FindFirst(...) is a method that searches for a claim with the specified type within the claimsIdentity.
+
+So, this line of code assigns the specific claim with the type ClaimTypes.NameIdentifier to the claim variable. This claim would typically contain the user's unique identifier.
+
+ */

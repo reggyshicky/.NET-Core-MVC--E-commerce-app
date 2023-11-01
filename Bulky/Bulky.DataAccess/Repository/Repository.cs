@@ -48,10 +48,8 @@ namespace Bulky.DataAccess.Repository
             }
             else
             {
-                query = dbSet.AsNoTracking(); //you are assigning the dbSet (which is of type DbSet<T>)
-                                             //to the query variable, effectively making query a queryable
-                                             //collection of your entity type.
-     
+                query = dbSet.AsNoTracking(); 
+                                             
             }
 
             query = query.Where(filter);
