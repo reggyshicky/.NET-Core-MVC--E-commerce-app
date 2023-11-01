@@ -7,11 +7,13 @@ using Bulky.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Stripe;
+using Bulky.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(); //we are using MVC hence the service
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddRazorPages();
 //Adding EntityFrameworkcore service(DbContext); Dependency injection innit
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -63,6 +65,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+SeedDatabase();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
@@ -70,10 +73,14 @@ app.MapControllerRoute(
 
 app.Run();
 
-
-
-
-
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
 
 /*One of the features provided by the Identity system is token-based authentication. Tokens are used for various features such as:
 
