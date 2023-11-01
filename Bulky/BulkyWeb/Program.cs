@@ -28,6 +28,12 @@ builder.Services.ConfigureApplicationCookie(options =>      //this services must
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
+builder.Services.AddAuthentication().AddFacebook(option =>
+{
+    option.AppId = "302558212712088";
+    option.AppSecret = "fcb7ff45c4923be5878066da947fd460";
+});
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -100,6 +106,6 @@ options.Cookie.HttpOnly = true;
 This line configures the session cookie associated with the session. Setting HttpOnly to true indicates that the session cookie should be marked as "HTTP-only." An HTTP-only cookie can't be accessed via client-side JavaScript, enhancing the security of the session data.
 options.Cookie.IsEssential = true;
 This line sets the IsEssential property of the session cookie to true. An essential session cookie is typically used for scenarios where the application cannot function without the session cookie. If the client's browser does not send back an essential cookie, the session might be reinitialized.
-
+We used this package microsoft.aspnetcore.authentication.facebook to configure facebook login option, after creating an app in the facebook.developers site
 */
 
