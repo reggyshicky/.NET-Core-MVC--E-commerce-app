@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Bulky.Models.ViewModels
+﻿namespace Bulky.Models.ViewModels
 {
-	public class OrderVM
-	{
-		public OrderHeader OrderHeader{get; set;}
-		public IEnumerable<OrderDetail> OrderDetail { get; set; }
-	}
+    public class OrderVM
+    {
+        public OrderHeader OrderHeader { get; set; }
+        public IEnumerable<OrderDetail> OrderDetail { get; set; }
+    }
 }
 
 //In a computer program, A viewModel is a special class where you can write down all the information you want to show on a 

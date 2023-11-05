@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
-using Microsoft.IdentityModel.Tokens;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Linq.Expressions;
 
 namespace Bulky.DataAccess.Repository
 {
@@ -48,8 +36,8 @@ namespace Bulky.DataAccess.Repository
             }
             else
             {
-                query = dbSet.AsNoTracking(); 
-                                             
+                query = dbSet.AsNoTracking();
+
             }
 
             query = query.Where(filter);
@@ -79,8 +67,8 @@ namespace Bulky.DataAccess.Repository
             }
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var includeProp in includeProperties
-                    .Split(new char[] { ','},StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }
@@ -88,7 +76,7 @@ namespace Bulky.DataAccess.Repository
             return query.ToList();
         }
 
- 
+
         public void Remove(T entity)
         {
             dbSet.Remove(entity);

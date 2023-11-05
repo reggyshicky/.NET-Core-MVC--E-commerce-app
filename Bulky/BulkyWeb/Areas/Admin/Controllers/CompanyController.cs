@@ -1,23 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.X86;
-using System;
-using Microsoft.Extensions.Hosting;
-using static System.Collections.Specialized.BitVector32;
-using System.Reflection.Metadata;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
-using Bulky.DataAccess.Repository.IRepository;
-using Bulky.DataAccess.Repository;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using static System.Net.Mime.MediaTypeNames;
-using Newtonsoft.Json.Linq;
-using Bulky.Models.ViewModels;
-using System.Diagnostics;
-using Microsoft.AspNetCore.SignalR;
-using Bulky.DataAccess.Migrations;
-using Microsoft.AspNetCore.Authorization;
 using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -34,14 +19,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Company> objCompanyList = _unitOfWork.Company.GetAll().ToList();
-            
+
             return View(objCompanyList);
         }
         //This is an HTTP GET request handler.It returns a view for creating a new company.In other words, when a user navigates to a URL or 
         //clicks a link that maps to this action, they will see a form or page for creating a new company.
         public IActionResult Upsert(int? id)
-        {          
-            if (id == null || id == 0)  
+        {
+            if (id == null || id == 0)
             {
                 //create
                 return View(new Company());
@@ -53,7 +38,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return View(CompanyObj);
 
             }
-                    
+
         }
 
 
@@ -63,7 +48,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(Company CompanyObj)
         {
-            
+
             if (ModelState.IsValid)
             {
                 if (CompanyObj.Id == 0)
@@ -74,7 +59,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Company.Update(CompanyObj);
                 }
-                
+
                 _unitOfWork.Save();
                 TempData["success"] = "Company created succesfully";
                 return RedirectToAction("Index");
@@ -83,11 +68,11 @@ namespace BulkyWeb.Areas.Admin.Controllers
             {
                 return View(CompanyObj);
             }
-           
+
         }
 
-        
-      
+
+
 
         #region APICALLS
         [HttpGet]

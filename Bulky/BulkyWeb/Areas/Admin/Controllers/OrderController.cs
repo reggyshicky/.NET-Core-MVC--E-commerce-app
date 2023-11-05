@@ -3,11 +3,9 @@ using Bulky.Models;
 using Bulky.Models.ViewModels;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
 using Stripe.Checkout;
-using System.Diagnostics;
 using System.Security.Claims;
 
 namespace BulkyWeb.Areas.Admin.Controllers
@@ -15,22 +13,22 @@ namespace BulkyWeb.Areas.Admin.Controllers
     [Area("admin")]
     [Authorize]
     public class OrderController : Controller
-	{
-		
-		private readonly IUnitOfWork _unitOfWork;
+    {
+
+        private readonly IUnitOfWork _unitOfWork;
         [BindProperty]
         public OrderVM OrderVM { get; set; }
         public OrderController(IUnitOfWork unitOfWork)
         {
-			_unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
-		{
-			return View();
-		}
+        {
+            return View();
+        }
         public IActionResult Details(int orderId)
         {
-            OrderVM= new()
+            OrderVM = new()
             {
                 OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderId, includeProperties: "ApplicationUser"),
                 OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
@@ -45,7 +43,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin+","+SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
         public IActionResult UpdateOrderDetail(int orderId)
         {
             var orderHeaderFromDb = _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id);
@@ -66,7 +64,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             _unitOfWork.OrderHeader.Update(orderHeaderFromDb);
             _unitOfWork.Save();
             TempData["Success"] = "Order Details Updated Succesfully.";
-            return RedirectToAction(nameof(Details), new {orderId=orderHeaderFromDb.Id});
+            return RedirectToAction(nameof(Details), new { orderId = orderHeaderFromDb.Id });
         }
         [HttpPost]
         [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
@@ -169,7 +167,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return new StatusCodeResult(303);
         }
 
-        public IActionResult PaymentConfirmation(int orderHeaderId) 
+        public IActionResult PaymentConfirmation(int orderHeaderId)
         {
             OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderHeaderId);
             if (orderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment)
@@ -187,7 +185,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
 
             }
-            
+
 
             return View(orderHeaderId);
         }
@@ -195,11 +193,11 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         #region APICALLS
         [HttpGet]
-		public IActionResult GetAll(string status)
-		{
-            IEnumerable<OrderHeader> objOrderHeaders;  
-            
-            if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+        public IActionResult GetAll(string status)
+        {
+            IEnumerable<OrderHeader> objOrderHeaders;
+
+            if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
             {
                 objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
             }
@@ -209,8 +207,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
                 objOrderHeaders = _unitOfWork.OrderHeader.GetAll(u => u.ApplicationUserId == userId, includeProperties: "ApplicationUser");
             }
-            
-            
+
+
             switch (status)
             {
                 case "pending":
@@ -229,10 +227,10 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     break;
             }
             return Json(new { data = objOrderHeaders });
-		}
+        }
 
 
-		
-		#endregion
-	}
+
+        #endregion
+    }
 }

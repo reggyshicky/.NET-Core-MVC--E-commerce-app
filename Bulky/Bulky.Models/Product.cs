@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bulky.Models
 {
@@ -34,7 +28,7 @@ namespace Bulky.Models
         [Required]
         [Display(Name = "Price for 50+")]
         [Range(1, 1000)]
-        public double Price50{ get; set; }
+        public double Price50 { get; set; }
 
         [Required]
         [Display(Name = "Price for 100+")]

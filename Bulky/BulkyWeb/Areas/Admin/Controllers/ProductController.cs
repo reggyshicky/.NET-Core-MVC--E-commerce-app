@@ -1,23 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.X86;
-using System;
-using Microsoft.Extensions.Hosting;
-using static System.Collections.Specialized.BitVector32;
-using System.Reflection.Metadata;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
-using Bulky.DataAccess.Repository.IRepository;
-using Bulky.DataAccess.Repository;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using static System.Net.Mime.MediaTypeNames;
-using Newtonsoft.Json.Linq;
 using Bulky.Models.ViewModels;
-using System.Diagnostics;
-using Microsoft.AspNetCore.SignalR;
-using Bulky.DataAccess.Migrations;
-using Microsoft.AspNetCore.Authorization;
 using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
@@ -35,14 +22,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
-            
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+
             return View(objProductList);
         }
         //This is an HTTP GET request handler.It returns a view for creating a new product.In other words, when a user navigates to a URL or 
         //clicks a link that maps to this action, they will see a form or page for creating a new product.
         public IActionResult Upsert(int? id)
-        {           
+        {
             ProductVM productVM = new()
             {
                 CategoryList = _unitOfWork.Category.
@@ -55,7 +42,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
             };
             if (id == null || id == 0)
-                //create
+            //create
             {
                 return View(productVM);
             }
@@ -66,7 +53,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return View(productVM);
 
             }
-                    
+
         }
 
 
@@ -76,7 +63,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
-            
+
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath; //this WebRootPath will give us the path to the wwwRootPath
@@ -84,19 +71,19 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
-                    
-                    if(!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         //delete the old image
                         var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
 
-                        if(System.IO.File.Exists(oldImagePath))
+                        if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
 
                         }
                     }
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName),FileMode.Create))
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
 
@@ -111,7 +98,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(productVM.Product);
                 }
-                
+
                 _unitOfWork.Save();
                 TempData["success"] = "Product created succesfully";
                 return RedirectToAction("Index");
@@ -126,11 +113,11 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 });
                 return View(productVM);
             }
-           
+
         }
 
-        
-      
+
+
 
         #region APICALLS
         [HttpGet]

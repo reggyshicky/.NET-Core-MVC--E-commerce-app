@@ -20,7 +20,7 @@ namespace Bulky.DataAccess.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
-       
+
 
         //seeding data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -79,7 +79,7 @@ namespace Bulky.DataAccess.Data
                    Price50 = 85,
                    Price100 = 80,
                    CategoryId = 20,
-                   ImageUrl=""
+                   ImageUrl = ""
                },
                 new Product
                 {

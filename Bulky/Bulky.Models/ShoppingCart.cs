@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bulky.Models
 {
@@ -24,6 +19,6 @@ namespace Bulky.Models
         public ApplicationUser ApplicationUser { get; set; }
 
         [NotMapped] //will not be added in the database
-        public double Price {get; set;}
+        public double Price { get; set; }
     }
 }

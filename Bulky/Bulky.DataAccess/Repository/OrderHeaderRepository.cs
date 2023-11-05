@@ -1,15 +1,6 @@
 ﻿using Bulky.DataAccess.Data;
-using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository
 {
@@ -27,38 +18,38 @@ namespace Bulky.DataAccess.Repository
             _db.OrderHeaders.Update(obj);
         }
 
-		public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
-		{
+        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+        {
             var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
             if (orderFromDb != null)
             {
                 orderFromDb.OrderStatus = orderStatus;
-                if(!string.IsNullOrEmpty(paymentStatus))
+                if (!string.IsNullOrEmpty(paymentStatus))
                 {
                     orderFromDb.PaymentStatus = paymentStatus;
                 }
 
             }
 
-			
-		}
 
-		public void UpdateStripePaymentID(int id, string sessionId, string? paymentIntentId)
-		{
-			var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
-            if(!string.IsNullOrEmpty(sessionId))
+        }
+
+        public void UpdateStripePaymentID(int id, string sessionId, string? paymentIntentId)
+        {
+            var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
+            if (!string.IsNullOrEmpty(sessionId))
             {
                 orderFromDb.SessionId = sessionId; //generated when a user tries to make a payment, when it is succesful then a payment indent id gets generated
             }
-			if (!string.IsNullOrEmpty(paymentIntentId))
-			{
-				orderFromDb.PaymentIntentId = paymentIntentId;
+            if (!string.IsNullOrEmpty(paymentIntentId))
+            {
+                orderFromDb.PaymentIntentId = paymentIntentId;
                 orderFromDb.PaymentDate = DateTime.Now;
-			}
+            }
 
 
-		}
-	}
+        }
+    }
 }
 /*public CategoryRepository(ApplicationDbContext db) : base(db): This line defines a 
 constructor for the CategoryRepository class. The constructor takes an argument 

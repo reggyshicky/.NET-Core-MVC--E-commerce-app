@@ -1,16 +1,10 @@
-﻿using Azure.Identity;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Data;
 using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Bulky.DataAccess.DbInitializer 
+namespace Bulky.DataAccess.DbInitializer
 {
     public class DbInitializer : IDbInitializer
     {
@@ -33,12 +27,12 @@ namespace Bulky.DataAccess.DbInitializer
             //push migrations if they are not applied
             try
             {
-                if(_db.Database.GetPendingMigrations().Count() > 0)
+                if (_db.Database.GetPendingMigrations().Count() > 0)
                 {
                     _db.Database.Migrate();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

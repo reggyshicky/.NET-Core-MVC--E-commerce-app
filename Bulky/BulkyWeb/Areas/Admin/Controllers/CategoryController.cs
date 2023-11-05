@@ -1,15 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Runtime.Intrinsics.X86;
-using System;
-using Microsoft.Extensions.Hosting;
-using static System.Collections.Specialized.BitVector32;
-using System.Reflection.Metadata;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
-using Bulky.DataAccess.Repository.IRepository;
-using Bulky.DataAccess.Repository;
-using Microsoft.AspNetCore.Authorization;
 using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
