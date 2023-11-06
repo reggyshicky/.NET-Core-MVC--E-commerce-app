@@ -16,7 +16,9 @@ namespace Bulky.Models
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         [ValidateNever]
-        public Company Company { get; set; }
+        public Company? Company { get; set; }
+        [NotMapped]
+        public string Role { get; set; }
     }
 }
 //company ID is the navigation property for this company that we have.
