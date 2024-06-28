@@ -51,7 +51,7 @@ The ASP.NET Core Identity with MVC course covered a wide range of topics, enabli
 
 - Clone the repository to your local machine using the following command:
 
-- git clone [https://github.com/Peter19995/ASP.NET-Core-Identity-with-MVC.git](https://github.com/reggyshicky/.NET-Core-MVC--E-commerce-app.git)
+- git clone https://github.com/reggyshicky/.NET-Core-MVC--E-commerce-app.git
 - Navigate to the project directory and open the project solution in Visual Sutido.
 
 - Install the necessary dependencies.
