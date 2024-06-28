@@ -35,12 +35,12 @@ The ASP.NET Core Identity with MVC course covered a wide range of topics, enabli
  - builder.Services.AddAuthentication().
    AddFacebook(options =>
    {
-       options.AppId = "<YOUR API KEY>";
-       options.AppSecret = "<YOUR SECRET KEY>";
+       options.AppId = "YOUR API KEY";
+       options.AppSecret = "YOUR SECRET KEY";
    }).AddGoogle(options =>  
    {
-       options.ClientId = "<YOUR API KEY>";
-       options.ClientSecret = "<YOUR SECRET KEY>";
+       options.ClientId = "YOUR API KEY";
+       options.ClientSecret = "YOUR SECRET KEY";
    });
 - User and Role Management: An intuitive user management system that enables administrators to manage user accounts, assign roles, and customize user permissions.
 
@@ -51,7 +51,7 @@ The ASP.NET Core Identity with MVC course covered a wide range of topics, enabli
 
 - Clone the repository to your local machine using the following command:
 
-- git clone https://github.com/Peter19995/ASP.NET-Core-Identity-with-MVC.git
+- git clone [https://github.com/Peter19995/ASP.NET-Core-Identity-with-MVC.git](https://github.com/reggyshicky/.NET-Core-MVC--E-commerce-app.git)
 - Navigate to the project directory and open the project solution in Visual Sutido.
 
 - Install the necessary dependencies.
@@ -59,7 +59,7 @@ The ASP.NET Core Identity with MVC course covered a wide range of topics, enabli
 - Configure the database connection string in the appsettings.json file.
 
 "ConnectionStrings": {
-    "DefaultConnection": "Server=<Your Server Name>;Database=IdentityManagerDb;Trusted_Connection=False;TrustServerCertificate=True;MultipleActiveResultSets=true;User=sa;Password=<Your Password>;"
+    "DefaultConnection": "Server=Your Server Name;Database=BulkyDb;Trusted_Connection=False;TrustServerCertificate=True;MultipleActiveResultSets=true;User=sa;Password=Your Password;"
 }
 - Apply the database migrations by running the following command in Package Manager Console
 
@@ -69,7 +69,7 @@ then
 dotnet update-database
 - Run your application in Visual Studio.
 
-- Access the application in your web browser at http://localhost:<portnumber> or https://localhost:<portnumber>.
+- Access the application in your web browser at http://localhost:portnumber or https://localhost:portnumber.
 
 # Contributions and Feedback
 - I am open to contributions and appreciate any feedback on the project. If you encounter any issues or have suggestions for improvement, please feel free to create an issue in the repository.
