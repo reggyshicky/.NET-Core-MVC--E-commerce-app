@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(); //we are using MVC hence the service
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddRazorPages();
 //Adding EntityFrameworkcore service(DbContext); Dependency injection innit
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -44,7 +43,7 @@ builder.Services.AddSession(options =>
 
 });
 
-
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 var app = builder.Build();

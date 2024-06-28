@@ -56,7 +56,7 @@ namespace Bulky.DataAccess.DbInitializer
                     State = "KE",
                     PostalCode = "0100",
                     City = "Nairobi"
-                }, "Admin123*").GetAwaiter().GetResult();
+                }, "Reggy*123").GetAwaiter().GetResult();
 
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@reggyshicky.com");
                 _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
